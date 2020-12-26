@@ -48,7 +48,7 @@ Once you know the data you want, you can extract it with the `read_sql` command.
 
 ```R
 Sys.setenv("PKG_LIBS"="-lboost_regex")
-sourceCpp('read_sql')
+sourceCpp('read_sql.cpp')
 
 titles = read_sql("scimag.sql", "Title")
 ```
@@ -78,6 +78,9 @@ To use `read_sql`, install the following R packages:
  * [BH](https://cran.r-project.org/web/packages/BH/index.html) 
  
 
-Put the source code (`read_sql`) in the directory of your R script. Then source it with the command `sourceCpp('`read_sql`)`.
+Put the source code (`read_sql.cpp`) in the directory of your R script. Then source it with the command:
 
-
+```R
+Sys.setenv("PKG_LIBS"="-lboost_regex")
+sourceCpp('read_sql.cpp')
+```
