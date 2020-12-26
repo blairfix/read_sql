@@ -25,11 +25,11 @@ Returns a vector with the data you searched for from the `.sql` file.
 
 ### Example:
 
-Head over to Libgen and download the Sci-Hub database dump. It's called `scimag.sql.gz` (or some variant). Download it and unpack it. Now we want to see what data is available. Go to the directory where scimag.sql lives, open a terminal and run:
+Head over to Libgen and download the Sci-Hub database dump. It's called `scimag.sql.gz` (or some variant). Download it and unpack it. Now we want to see what data is available. Go to the directory where `scimag.sql` lives, open a terminal and run:
 
 `cat scimag.sql | less`
 
-You can now browse through the file. (Don't try to open it in a text editor ... it's so huge your editor will blow up.) You'll see a lot of boiler plate stuff, but what's important is the `CREATE TABLE` text. It tells you what variables are available. Here' its `ID`, `DOI`, `Title`, and so on. 
+You can now browse through the file. (Don't try to open it in a text editor ... it's so huge your editor will blow up.) You'll see a lot of boiler plate stuff, but what's important is the `CREATE TABLE` text. It tells you what variables are available. Here, its `ID`, `DOI`, `Title`, and so on. 
 
 
 ```
@@ -47,6 +47,7 @@ Once you know the data you want, you can extract it with the `read_sql` command.
 
 
 ```R
+Sys.setenv("PKG_LIBS"="-lboost_regex")
 sourceCpp('read_sql')
 
 titles = read_sql("scimag.sql", "Title")
@@ -74,7 +75,8 @@ year_2
 
 To use `read_sql`, install the following R packages:
  * [Rcpp](https://cran.r-project.org/web/packages/Rcpp/index.html) 
- * Boost 
+ * [BH](https://cran.r-project.org/web/packages/BH/index.html) 
+ 
 
 Put the source code (`read_sql`) in the directory of your R script. Then source it with the command `sourceCpp('`read_sql`)`.
 
