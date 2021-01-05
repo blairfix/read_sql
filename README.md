@@ -1,6 +1,6 @@
 # read_sql
 
-`read_sql` is a function for extracting data from `.sql` files. I built it to scrape data from Library Genesis and Sci-Hub. Every week, Library Genesis dumps its database here: http://gen.lib.rus.ec/dbdumps/
+`read_sql` is an R function for extracting data from `.sql` files. I built it to scrape data from Library Genesis and Sci-Hub. Every week, Library Genesis dumps its database here: http://gen.lib.rus.ec/dbdumps/
 
 The files come as `.sql` files. To extract data, one option would be to setup an SQL server to host the database and then query the data you want. 
 (Daniel Himmelstein goes through the steps [here](https://github.com/greenelab/scihub/tree/b8e257a24375f3151619f42d4cd56e7e4fa21d1c/download/libgen).)
@@ -8,11 +8,11 @@ The files come as `.sql` files. To extract data, one option would be to setup an
 I didn't want to do that, so I built an R function that can parse data from the file. 
 
 
+
+### Inputs
 ``` 
 read_sql(filename, table, get_columns)
 ```
-
-### Inputs
 
 * `file_name` = the `.sql` file you want to parse
 * `table` = the name of the sql table in the database
@@ -53,9 +53,9 @@ library(Rcpp)
 Sys.setenv("PKG_LIBS"="-lboost_regex")
 sourceCpp('read_sql.cpp')
 
-title_year = read_sql(filename = "scimag.sql", 
-                      table = "scimag",
-                      get_columns = c("Title", "Year"))
+titles = read_sql(filename = "scimag.sql", 
+                  table = "scimag",
+                  get_columns = "Title")
               
 ```
 
