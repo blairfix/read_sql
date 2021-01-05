@@ -61,7 +61,7 @@ titles = read_sql(filename = "scimag.sql",
 
 In this case, every entry is the title of a paper in the Sci-hub database. You'll get a vector back with about 80 million titles. Here's the first 5 entries:
 
-```
+```R
 > head(titles, 5)
 [1] "Detection of new spider toxins from a <em>Nephilengys borbonica</em> venom gland using on-line μ-column HPLC continuous flow (FRIT) FAB LC/MS and MS/MS"
 [2] "Identification by flow cytometry of Seiridin, one of the main phytotoxins produced by three <em>Seiridium</em> species pathogenic to cypress"           
@@ -72,13 +72,15 @@ In this case, every entry is the title of a paper in the Sci-hub database. You'l
 
 You can also search for multiple variables:
 
-```
-title_year = read_sql("scimag.sql", c("Title", "Year"))
+```R
+title_year = read_sql(filename = "scimag.sql", 
+                      table = "scimag",
+                      get_columns = c("Title", "Year"))
 ```
 
 You'll still get a vector back, but this time it will contain both title and years, formatted like this:
 
-```
+```R
 title_1
 year_1
 title_2
@@ -87,7 +89,7 @@ year_2
 
 The first three papers:
 
-```
+```R
 [1] "Detection of new spider toxins from a <em>Nephilengys borbonica</em> venom gland using on-line μ-column HPLC continuous flow (FRIT) FAB LC/MS and MS/MS"
 [2] "1997"                                                                                                                                                   
 [3] "Identification by flow cytometry of Seiridin, one of the main phytotoxins produced by three <em>Seiridium</em> species pathogenic to cypress"           
