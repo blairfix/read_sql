@@ -29,7 +29,7 @@ Head over to Libgen and download the Sci-Hub database dump. It's called `scimag.
 
 `cat scimag.sql | less`
 
-You can now browse through the file. (Don't try to open it in a text editor ... it's so huge your editor will blow up.) You'll see a lot of boiler plate stuff, but what's important is the `CREATE TABLE` text. It tells you what variables are available. Here, its `ID`, `DOI`, `Title`, and so on. 
+You can now browse through the file. (Don't try to open it in a text editor ... it's so huge your editor will blow up.) You'll see a lot of boiler plate stuff, but what's important is the `CREATE TABLE` text. It tells you what variables are available in the SQL table. In this case, the table is called `scimag`. The variables are `ID`, `DOI`, `Title`, and so on. 
 
 
 ```
@@ -47,10 +47,14 @@ Once you know the data you want, you can extract it with the `read_sql` command.
 
 
 ```R
+library(Rcpp)
 Sys.setenv("PKG_LIBS"="-lboost_regex")
 sourceCpp('read_sql.cpp')
 
-titles = read_sql("scimag.sql", "Title")
+title_year = read_sql(filename = "scimag.sql", 
+                      table = "scimag",
+                      get_columns = c("Title", "Year"))
+              
 ```
 
 In this case, every entry is the title of a paper in the Sci-hub database. You'll get a vector back with about 80 million titles. 
@@ -81,6 +85,7 @@ To use `read_sql`, install the following R packages:
 Put the source code (`read_sql.cpp`) in the directory of your R script. Then source it with the command:
 
 ```R
+library(Rcpp)
 Sys.setenv("PKG_LIBS"="-lboost_regex")
 sourceCpp('read_sql.cpp')
 ```

@@ -16,6 +16,7 @@ using namespace Rcpp;
 // [[Rcpp::export]]
 
 std::list<std::string> read_sql( std::string filename,
+                                 std::string table,
                                  std::vector<std::string> get_columns
                                  )
 {
@@ -36,16 +37,21 @@ std::list<std::string> read_sql( std::string filename,
 
 
     // 3.  read in file
-    std::string line;
 
     // output list
     std::list<std::string> output;
+
+    // make table insertion tag
+    //std::string insertion = "INSERT INTO `scimag` (`";
+    std::string insertion = "INSERT INTO `" + table + "` (`";
+
+    // counters
     int line_number = 1;
+    std::string line;
 
     while (getline(input_file, line)){
 
         // test if line contains insertion
-        std::string insertion = "INSERT INTO `scimag` (`";
         size_t pos = line.find(insertion);
 
         //  if insertion found, get data
