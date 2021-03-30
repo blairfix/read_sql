@@ -91,10 +91,10 @@ The first three papers:
 
 ```R
 [1] "Detection of new spider toxins from a <em>Nephilengys borbonica</em> venom gland using on-line μ-column HPLC continuous flow (FRIT) FAB LC/MS and MS/MS"
-[2] "1997"                                                                                                                                                   
-[3] "Identification by flow cytometry of Seiridin, one of the main phytotoxins produced by three <em>Seiridium</em> species pathogenic to cypress"           
-[4] "1997"                                                                                                                                                   
-[5] "Evaluation of <em>Alternaria</em> and its mycotoxins during ensiling of sunflower seeds"                                                                
+[2] "1997"
+[3] "Identification by flow cytometry of Seiridin, one of the main phytotoxins produced by three <em>Seiridium</em> species pathogenic to cypress"
+[4]"1997"
+[5] "Evaluation of <em>Alternaria</em> and its mycotoxins during ensiling of sunflower seeds"
 [6] "1997" 
 
 ```
@@ -103,8 +103,10 @@ The first three papers:
 ### Installation
 
 To use `read_sql`, install the following R packages:
- * [Rcpp](https://cran.r-project.org/web/packages/Rcpp/index.html) 
- * [BH](https://cran.r-project.org/web/packages/BH/index.html) 
+
+* [Rcpp](https://cran.r-project.org/web/packages/Rcpp/index.html) 
+* [BH](https://cran.r-project.org/web/packages/BH/)
+* [Rtools](https://cran.r-project.org/bin/windows/Rtools/history.html) (if you use Windows)
  
 
 Put the source code (`read_sql.cpp`) in the directory of your R script. Then source it with the command:
